@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"go-study/gin-protobuf/pb"
+	"go-notes/gin-protobuf/pb"
 	"net/http"
 )
 
