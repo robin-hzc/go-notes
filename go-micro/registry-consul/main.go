@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"github.com/asim/go-micro/plugins/registry/consul/v4"
 	"go-micro.dev/v4"
+	"go-micro.dev/v4/registry"
 	"go-micro.dev/v4/util/log"
 	"go-notes/go-micro/hello/pb"
 	"google.golang.org/grpc"
@@ -24,22 +26,24 @@ func main() {
 			time.Sleep(time.Second)
 		}
 	}()
-	//reg:=consul.NewRegistry(func(op *registry.Options) {
-	//	op.Addrs = []string{
-	//		"127.0.0.1:8500",
-	//	}
-	//})
+	reg := consul.NewRegistry(
+		func(op *registry.Options) {
+			op.Addrs = []string{
+				"127.0.0.1:8500",
+			}
+		},
+	)
 	service := micro.NewService(
 		micro.Name("go.micro.srv.hello"),
-		//micro.Version("1"),
-		//micro.Registry(reg),
+		micro.Version("1"),
+		micro.Registry(reg),
 	)
-
+	//micro.RegisterSubscriber
 	// optionally setup command line usage
 	service.Init()
 
 	// Register Handlers
-	err :=pb.RegisterSayHandler(service.Server(), new(Say))
+	err := pb.RegisterSayHandler(service.Server(), new(Say))
 	log.Info(err)
 	// Run server
 	if err := service.Run(); err != nil {

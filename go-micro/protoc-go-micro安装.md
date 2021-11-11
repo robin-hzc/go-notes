@@ -13,3 +13,4 @@ git switch -c v4.3.0
 cd cmd/protoc-gen-micro
 
 go build -o protoc-gen-micro main.go
+
