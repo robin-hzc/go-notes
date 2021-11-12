@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  gin-web1:
+    image: test:latest
+    container_name: gin-web1
+    ports:
+      - "8081:8081"
+    networks:
+      - web
+  gin-web2:
+    image: test:latest
+    container_name: gin-web2
+    ports:
+      - "8082:8081"
+    networks:
+      - web
+
+networks:
+  web:
+
