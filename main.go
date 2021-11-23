@@ -1,7 +1,7 @@
 package main
 
 import (
-	"go/channel"
+	"go-notes/channel"
 	"time"
 )
 
