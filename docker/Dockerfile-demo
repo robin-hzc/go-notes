@@ -31,3 +31,5 @@ EXPOSE 80
 
 #CMD 运行以下命令
 CMD ["nginx"]
+
+#退出容器而不关闭 容器ctrl+p+q
