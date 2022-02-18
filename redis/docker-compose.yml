@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+  redis:
+    image: redis
+    container_name: redis_test
+    restart: always
+    command: redis-server  --requirepass 123456 #/usr/local/etc/redis/redis.conf 基于配置文件,适用于挂载文件的方法
+    ports:
+      - "16369:6379"

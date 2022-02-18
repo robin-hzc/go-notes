@@ -1,0 +1,25 @@
+version: '3' #版本需与docker-compose版本一致；docker-compose version命令查询版本号
+services:
+  #redis容器
+  redis:
+    #定义主机名
+    container_name: myredis
+    #使用的镜像；注意这里的版本要与第2步redis版本一致
+    image: redis:6.0.6
+    #容器的映射端口
+    ports:
+      - 6379:6379 #注意第二个端口必须是redis.conf中的端口号
+    command: redis-server /docker-compose/redis/conf/redis.conf #覆盖容器启动的redis.conf
+    #定义挂载点
+    volumes:
+      - ./data:/data #挂载/docker-compose/redis/data至容器
+      -- ./conf/redis.conf:/etc/redis.conf #挂载conf至容器
+    privileged: true  #环境变量
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    #docker 重启后，容器自启动
+    restart: always
+  ————————————————
+  版权声明：本文为CSDN博主「茌山之北」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+  原文链接：https://blog.csdn.net/u013652477/article/details/107833068
